@@ -7,6 +7,8 @@ import Block from './Block.js'
 import { validKeys } from './Utils.js'
 import { words } from './Utils.js'
 
+import font from '../../fonts/JetBrainsMonoExtraBold.ttf'
+
 export default class Wordle {
     constructor() {
         this.level = 0
@@ -76,7 +78,7 @@ export default class Wordle {
         this.fontLoader = new FontLoader()
         
         this.ttfLoader.load(
-            './fonts/JetBrainsMonoExtraBold.ttf',
+            font,
             (unparsedFont) => {
                 this.parsedFont = this.fontLoader.parse( unparsedFont )
                 this.blocks.forEach( (block) => block.setFont( this.parsedFont ))
