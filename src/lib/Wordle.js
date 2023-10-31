@@ -76,7 +76,7 @@ export default class Wordle {
         this.fontLoader = new FontLoader()
         
         this.ttfLoader.load(
-            '/fonts/JetBrainsMonoExtraBold.ttf',
+            './fonts/JetBrainsMonoExtraBold.ttf',
             (unparsedFont) => {
                 this.parsedFont = this.fontLoader.parse( unparsedFont )
                 this.blocks.forEach( (block) => block.setFont( this.parsedFont ))
