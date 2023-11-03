@@ -9,6 +9,8 @@ import { words } from './Utils.js'
 
 import font from '../../fonts/JetBrainsMonoExtraBold.ttf'
 
+import Swal from 'sweetalert2'
+
 export default class Wordle {
     constructor() {
         this.level = 0
@@ -45,41 +47,73 @@ export default class Wordle {
                         block.checkCharacter( this.word, character )
                     }
                     if ( this.currentWord == this.word ) {
-                        alert('Has ganado')
-                        setTimeout( function() { location.reload() }, 2500 )
+                        return 'win'
+                        Swal.fire({
+                            title: 'Correcto!',
+                            text: 'Has ganado!',
+                            icon: 'success',
+                            confirmButtonText: 'Restart',
+                            allowOutsideClick: false
+                        }).then( function(result) {
+                            if ( result.isConfirmed ) {
+                                // location.reload()
+                                console.log('entra')
+                            }
+                            else {
+                                console.log('no entra')
+                            }
+                        })
                     }
                     this.level += 1
                     this.currentWord = ''
                     this.charIndex = 0
 
                     if ( this.level == 5 ) {
-                        alert('Has perdido')
-                        setTimeout( function() { location.reload() }, 2500 )
+                        return 'loss'
+                        Swal.fire({
+                            title: 'La palabra correcta era' + this.word,
+                            text: 'Has perdido!',
+                            icon: 'error',
+                            confirmButtonText: 'Restart',
+                            allowOutsideClick: false
+                        }).then( (result) => {
+                            if ( result.isConfirmed ) {
+                                // location.reload()
+                            }
+                        })
                     }
                 }
                 else {
-                    alert('La palara no está en la lista')
+                    return 'fail'
+                    Swal.fire({
+                        text: 'La palabra no se encuentra en la lista',
+                        allowOutsideClick: true
+                    }).then( (result) => {
+                        if ( result.isConfirmed ) {}
+                    })
                 }
             }
         }
         else if ( event.key === 'Backspace' ) {
-            if (this.charIndex != 0) {
-                this.charIndex -= 1;
-                this.currentWord = this.currentWord.slice( 0, -1 )
-                const block = this.blocks[ this.charIndex + this.level * 5 ]
-                block.removeCharacter()
+            if ( this.charIndex == 0) {
+                return 'nothing'
             }
-            
+            this.charIndex -= 1;
+            this.currentWord = this.currentWord.slice( 0, -1 )
+            const block = this.blocks[ this.charIndex + this.level * 5 ]
+            block.removeCharacter()            
         }
         else if ( validKeys.includes( event.key )) {
             if ( this.currentWord.length === 5 ) {
-                return
+                return 'nothing'
             }
             const block = this.blocks[ this.charIndex + this.level * 5 ]
             block.addCharacter( event.key )
             this.charIndex += 1
             this.currentWord += event.key
         }
+
+        return 'nothing'
     }
 
     setUpFont() {
