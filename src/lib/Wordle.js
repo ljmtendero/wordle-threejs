@@ -44,9 +44,18 @@ export default class Wordle {
                         const block = this.blocks[i + this.level * 5]
                         block.checkCharacter( this.word, character )
                     }
+                    if ( this.currentWord == this.word ) {
+                        alert('Has ganado')
+                        setTimeout( function() { location.reload() }, 2500 )
+                    }
                     this.level += 1
                     this.currentWord = ''
                     this.charIndex = 0
+
+                    if ( this.level == 5 ) {
+                        alert('Has perdido')
+                        setTimeout( function() { location.reload() }, 2500 )
+                    }
                 }
                 else {
                     alert('La palara no está en la lista')
