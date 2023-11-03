@@ -5,6 +5,7 @@ import Wordle from './lib/Wordle.js'
 
 import Swal from 'sweetalert2'
 
+
 function App() {
     useEffect( () => {
         const test = new SceneInit( 'myWordleCanvas' )

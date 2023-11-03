@@ -48,21 +48,6 @@ export default class Wordle {
                     }
                     if ( this.currentWord == this.word ) {
                         return 'win'
-                        Swal.fire({
-                            title: 'Correcto!',
-                            text: 'Has ganado!',
-                            icon: 'success',
-                            confirmButtonText: 'Restart',
-                            allowOutsideClick: false
-                        }).then( function(result) {
-                            if ( result.isConfirmed ) {
-                                // location.reload()
-                                console.log('entra')
-                            }
-                            else {
-                                console.log('no entra')
-                            }
-                        })
                     }
                     this.level += 1
                     this.currentWord = ''
@@ -70,27 +55,10 @@ export default class Wordle {
 
                     if ( this.level == 5 ) {
                         return 'loss'
-                        Swal.fire({
-                            title: 'La palabra correcta era' + this.word,
-                            text: 'Has perdido!',
-                            icon: 'error',
-                            confirmButtonText: 'Restart',
-                            allowOutsideClick: false
-                        }).then( (result) => {
-                            if ( result.isConfirmed ) {
-                                // location.reload()
-                            }
-                        })
                     }
                 }
                 else {
                     return 'fail'
-                    Swal.fire({
-                        text: 'La palabra no se encuentra en la lista',
-                        allowOutsideClick: true
-                    }).then( (result) => {
-                        if ( result.isConfirmed ) {}
-                    })
                 }
             }
         }
