@@ -16,7 +16,7 @@ export default class Wordle {
         this.level = 0
         this.charIndex = 0
         this.currentWord = ''
-        this.word = words[Math.floor(Math.random() * (words.length - 1 - 0 + 1)) + 0]
+        this.word = 'labio' // words[Math.floor(Math.random() * (words.length - 1 - 0 + 1)) + 0]
         console.log('Solución: ' + this.word)
 
         this.wordleGroup = new THREE.Group()
