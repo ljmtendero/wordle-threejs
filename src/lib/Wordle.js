@@ -17,7 +17,7 @@ export default class Wordle {
         this.charIndex = 0
         this.currentWord = ''
         this.word = words[Math.floor(Math.random() * (words.length - 1 - 0 + 1)) + 0]
-        console.log('Solución: ' + this.word)
+        // console.log('Solución: ' + this.word)
 
         this.wordleGroup = new THREE.Group()
         this.wordleGroup.position.set( -20, -20, 0 )
